@@ -1,0 +1,18 @@
+zerops:
+  - setup: app
+    build:
+      deployFiles: [.]
+    run:
+      os: ubuntu
+      base:  go@1
+      prepareCommands:
+        - sudo wget -P /var/www/ https://github.com/medama-io/medama/releases/download/v0.4.4/medama-v0.4.4-linux-amd64.zip
+      initCommands:
+        - yes | sudo unzip -q /var/www/medama-v0.4.4-linux-amd64.zip
+        - sudo chmod +x /var/www/medama_linux_amd64
+
+      ports:
+        - port: 8080
+          httpSupport: true
+  
+      start: sudo /var/www/medama_linux_amd64 start -analyticsdb /mnt/sharedstorage0/me_analytics.db -appdb /mnt/sharedstorage0/me_meta.db
