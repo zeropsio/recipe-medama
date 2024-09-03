@@ -2,6 +2,8 @@
 
 [Medama](https://oss.medama.io/) Analytics is an open-source project dedicated to providing self-hostable, cookie-free website analytics. With a lightweight tracker of less than 1KB, it aims to offer useful analytics while prioritising user privacy.
 
+![medama](https://github.com/zeropsio/recipe-shared-assets/blob/main/covers/svg/cover-medama.svg)
+
 Medama on Zerops is selfhosting binary running with database files on HA shared storage.
 
 ## Prerequisites
