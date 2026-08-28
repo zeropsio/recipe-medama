@@ -4,7 +4,7 @@
 
 ![medama](https://github.com/zeropsio/recipe-shared-assets/blob/main/covers/svg/cover-medama.svg)
 
-Medama on Zerops is selfhosting binary running with database files on HA shared storage.
+Medama on Zerops is selfhosting binary running with database files on a persistent [Local Storage](https://docs.zerops.io/local-storage/overview) volume.
 
 ## Prerequisites
 
@@ -18,20 +18,19 @@ Locate "Import project" in the menu top left corner and paste following yaml:
 project:
   name: recipe-medama
 services:
-  - hostname: sharedstorage0
-    type: shared-storage
-    mode: HA
+  - hostname: storage
+    type: local-storage:single@1
     priority: 10
-  
+
   - hostname: app
     type: go@1
     enableSubdomainAccess: true
     buildFromGit: "https://github.com/zeropsio/recipe-medama"
     zeropsSetup: app
     priority: 1
-    mount: 
-      - sharedstorage0
 ```
+
+The `storage` volume is mounted to the `app` service at `/mnt/storage` by the `volume` field in [zerops.yml](https://github.com/zeropsio/recipe-medama/blob/main/zerops.yml), which is where Medama keeps its database files.
 
 ## Login to Medama 
 When deploy is complete, go to `recipe-medama` project detail and in the left menu locate `IP Addresses & Public Routing Overview`, where you can find a subdomain link to open Medama frontend.
