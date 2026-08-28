@@ -14,5 +14,7 @@ zerops:
       ports:
         - port: 8080
           httpSupport: true
-  
-      start: sudo /var/www/medama_linux_amd64 start -analyticsdb /mnt/sharedstorage0/me_analytics.db -appdb /mnt/sharedstorage0/me_meta.db
+      volume:
+        hostname: storage
+
+      start: sudo /var/www/medama_linux_amd64 start -analyticsdb /mnt/storage/me_analytics.db -appdb /mnt/storage/me_meta.db
